@@ -25,14 +25,14 @@ import (
  */
 
 // For Cmd-C -- copy
-func SetPasteboard(goString string) {
+func Set(goString string) {
 	cString := C.CString(goString)
 	defer C.free(unsafe.Pointer(cString))
 	C.setPasteboard(cString)
 }
 
 // For Cmd-V -- Paste
-func GetPasteboard() (string, bool) {
+func Get() (string, bool) {
 	cString := C.getPasteboard()
 	if cString == nil {
 		return "", false
